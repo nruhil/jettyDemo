@@ -22,7 +22,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-jetty")
 	runtimeOnly("com.mysql:mysql-connector-j")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	//implementation("javax.servlet:javax.servlet-api:4.0.1")
+	providedCompile("javax.servlet:javax.servlet-api:4.0.1")
 	//implementation("javax.servlet:jsp-api:2.3.3")
 	//implementation("javax.servlet:jstl:1.2")
 
@@ -36,6 +36,7 @@ gretty {
 	httpPort = 8080
 	springBootVersion	= "2.7.9"
 	serverConfigFile = "$projectDir/jetty/jetty.xml"
+	contextPath = '/'
 }
 
 tasks.withType<Test> {
