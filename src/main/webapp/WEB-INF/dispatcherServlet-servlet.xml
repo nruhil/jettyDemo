@@ -7,6 +7,15 @@
 
     <mvc:annotation-driven />
 
-    <bean class="com.neeraj.jettyDeployment.controller.UserController" />
+
+    <bean class="com.neeraj.jettyDeployment.controller.UserController"  name="userController">
+       <property name="userServiceImpl" ref="userServiceImpl"/>
+    </bean>
+
+    <bean class="com.neeraj.jettyDeployment.Service.impl.UserServiceImpl" name="userServiceImpl">
+        <property name="userRepoImpl" ref="userRepoImpl"/>
+    </bean>
+
+    <bean class="com.neeraj.jettyDeployment.repo.UserRepoImpl"  name="userRepoImpl" />
 
 </beans>

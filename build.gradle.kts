@@ -23,6 +23,7 @@ dependencies {
 	runtimeOnly("com.mysql:mysql-connector-j")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	providedCompile("javax.servlet:javax.servlet-api:4.0.1")
+	//implementation("javax.inject:javax.inject:1")
 	//implementation("javax.servlet:jsp-api:2.3.3")
 	//implementation("javax.servlet:jstl:1.2")
 
@@ -39,8 +40,11 @@ gretty {
 	contextPath = '/'
 }
 
-tasks.withType<Test> {
+/*task dependencyReport(type: DependencyReportTask) {
+	outputFile = file("$buildDir/reports/dependencies.txt")
+}*/
+/*tasks.withType<Test> {
 	useJUnitPlatform()
-}
+}*/
 
 

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xsi:schemaLocation="
+          http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/data/jpa
+          http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+    <!-- Enable component scanning for the "com.example" package -->
+    <context:component-scan base-package="com.neeraj" />
+
+    <!-- Define the datasource bean -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/jettyDemo" />
+        <property name="username" value="root" />
+        <property name="password" value="" />
+    </bean>
+
+    <!-- Configure JPA EntityManagerFactory -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan" value="com.neeraj.jettyDeployment.entity" />
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="database" value="MYSQL" />
+            </bean>
+        </property>
+    </bean>
+
+    <!-- Configure Spring Data JPA -->
+    <jpa:repositories base-package="com.neeraj.jettyDeployment.repo" />
+
+    <!-- Define the UserRepository bean -->
+    <bean id="userRepo" class="com.neeraj.jettyDeployment.repo.UserRepo">
+
+    </bean>
+
+    <!-- Define the UserService bean -->
+    <bean id="userService" class="com.neeraj.jettyDeployment.Service.UserService">
+        <property name="userRepo" ref="userRepo" />
+    </bean>
+
+<!--    &lt;!&ndash; Define the UserController bean &ndash;&gt;-->
+<!--    <bean id="userController" class="com.example.controller.UserController">-->
+<!--        <property name="userService" ref="userService" />-->
+<!--    </bean>-->
+
+</beans>
